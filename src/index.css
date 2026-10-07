@@ -1,0 +1,4 @@
+/* Entry stylesheet: pulls in the design tokens, base styles, and animations. */
+@import './styles/variables.css';
+@import './styles/globals.css';
+@import './styles/animations.css';

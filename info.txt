@@ -1,0 +1,2 @@
+cd muskan-portfolio
+npm run dev

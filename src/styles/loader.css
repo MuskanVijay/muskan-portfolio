@@ -1,0 +1,188 @@
+/* Loading screen: progress ring, boot log, and curtains that open. */
+
+.boot {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+/* Two halves that slide apart when loading is done */
+.boot-half {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50.5%;
+  background: var(--bg);
+  transition: transform 0.9s cubic-bezier(0.77, 0, 0.18, 1);
+}
+.boot-half.top {
+  top: 0;
+}
+.boot-half.bottom {
+  bottom: 0;
+}
+.boot.leaving .boot-half.top {
+  transform: translateY(-100%);
+}
+.boot.leaving .boot-half.bottom {
+  transform: translateY(100%);
+}
+
+.boot-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6rem;
+  padding: 0 1.25rem;
+  transition: opacity 0.35s ease, transform 0.5s ease;
+}
+.boot.leaving .boot-content {
+  opacity: 0;
+  transform: scale(0.94);
+}
+
+/* ---------- Ring ---------- */
+.boot-ring {
+  position: relative;
+  width: clamp(150px, 48vw, 200px);
+  aspect-ratio: 1;
+}
+.boot-ring::before {
+  content: '';
+  position: absolute;
+  inset: -45%;
+  background: radial-gradient(circle, var(--glow), transparent 65%);
+  pointer-events: none;
+}
+.boot-ring svg {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.ring-track {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 5;
+}
+.ring-bar {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 5;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: 100px 100px;
+  filter: drop-shadow(0 0 6px var(--accent));
+}
+.ring-dash {
+  fill: none;
+  stroke: var(--accent2);
+  stroke-width: 1.5;
+  stroke-dasharray: 2 9;
+  opacity: 0.7;
+  transform-origin: 100px 100px;
+  animation: bootSpinReverse 18s linear infinite;
+}
+.ring-orbit {
+  transform-origin: 100px 100px;
+  animation: bootSpin 2.4s linear infinite;
+}
+.ring-orbit circle {
+  fill: var(--spark, var(--accent));
+  filter: drop-shadow(0 0 5px var(--spark, var(--accent)));
+}
+
+.boot-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+}
+.boot-mark {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: clamp(1.9rem, 8vw, 2.5rem);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.boot-mark span {
+  color: var(--spark, var(--accent));
+}
+.boot-pct {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Boot log ---------- */
+.boot-log {
+  list-style: none;
+  margin: 0;
+  padding: 0.9rem 1.1rem;
+  width: min(300px, 82vw);
+  height: calc(6 * 1.65em + 1.8rem); /* fixed height so nothing jumps as lines appear */
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--card);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: var(--muted);
+}
+.boot-log li {
+  animation: bootLine 0.3s ease both;
+}
+.boot-log b {
+  display: inline-block;
+  width: 1.2em;
+  color: var(--accent);
+  font-weight: 700;
+}
+.boot-log li.cmd {
+  color: var(--ink);
+}
+.boot-log li.ready {
+  color: var(--spark, var(--accent));
+  font-weight: 700;
+}
+.boot-log li.ready b {
+  color: var(--spark, var(--accent));
+}
+
+.boot-foot {
+  margin: 0;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+@keyframes bootSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes bootSpinReverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+@keyframes bootLine {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -1,0 +1,73 @@
+/* Keyframes and scroll-reveal helpers. */
+
+/* Letters of the hero name rise into view */
+@keyframes rise {
+  to {
+    transform: none;
+  }
+}
+
+/* Blinking caret in the typed role line */
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Dripping line under the hero */
+@keyframes drip {
+  to {
+    top: 110%;
+  }
+}
+
+/* Pulse on timeline dots */
+@keyframes ping {
+  0% {
+    box-shadow: 0 0 0 0 var(--accent);
+  }
+  100% {
+    box-shadow: 0 0 0 14px transparent;
+  }
+}
+
+/* Project cards entering after a filter change */
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Scroll reveal: elements start hidden and get the .in class when visible */
+.js .rv {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: var(--d, 0s);
+}
+
+.js .rv.in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .js .rv {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

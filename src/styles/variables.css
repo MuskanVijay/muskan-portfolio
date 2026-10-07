@@ -1,0 +1,56 @@
+/* Design tokens. Change colors and fonts here and the whole site updates. */
+:root {
+     --bg: #f2f8f7;
+  --card: rgba(255, 255, 255, 0.8);
+  --navbg: rgba(242, 248, 247, 0.8);
+  --ink: #0f2a2c;
+  --muted: #4a6567;
+  --line: #cfe3e0;
+  --brand: #0d9488;        /* your teal: big name, decorative shapes */
+  --accent: #0f766e;       /* darker teal for buttons and small text (readable on light) */
+  --on-accent: #ffffff;
+  --accent2: #0d9488;      /* network lines, hover borders */
+  --spark: #b45309;        /* small warm touch: cursor caret, loader dot */
+  --glow: rgba(13, 148, 136, 0.1);
+
+  --display: 'Unbounded', 'Trebuchet MS', 'Helvetica Neue', Arial, sans-serif;
+  --body: 'Instrument Sans', 'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
+  --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --nav-h: 4.5rem;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+       --bg: #08191b;
+  --card: rgba(12, 38, 40, 0.72);
+  --navbg: rgba(8, 25, 27, 0.74);
+  --ink: #e9f6f4;
+  --muted: #9bb8b5;
+  --line: #1c3d3f;
+  --brand: #0d9488;
+  --accent: #2dd4bf;
+  --on-accent: #04201d;
+  --accent2: #14b8a6;
+  --spark: #fbbf24;
+  --glow: rgba(45, 212, 191, 0.15);
+  }
+}
+
+:root[data-theme='dark'] {
+      --bg: #08191b;
+  --card: rgba(12, 38, 40, 0.72);
+  --navbg: rgba(8, 25, 27, 0.74);
+  --ink: #e9f6f4;
+  --muted: #9bb8b5;
+  --line: #1c3d3f;
+  --brand: #0d9488;
+  --accent: #2dd4bf;
+  --on-accent: #04201d;
+  --accent2: #14b8a6;
+  --spark: #fbbf24;
+  --glow: rgba(45, 212, 191, 0.15);
+}

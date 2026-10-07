@@ -1,0 +1,143 @@
+/* Base styles shared by every section. */
+html {
+  scroll-padding-top: calc(var(--nav-h) + env(safe-area-inset-top, 0px));
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  transition: background 0.4s, color 0.4s;
+}
+
+a {
+  color: inherit;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+section {
+  padding: 5rem 0 3rem;
+}
+
+h2 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.7rem, 5vw, 2.6rem);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0 0 0.75rem;
+}
+
+.sub {
+  color: var(--muted);
+  max-width: 52ch;
+  margin: 0 0 2rem;
+}
+
+/* Buttons */
+.btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.btn {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 0.85rem;
+  text-decoration: none;
+  padding: 0.85rem 1.35rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--ink);
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  background: transparent;
+  color: var(--ink);
+  transition: transform 0.2s, color 0.3s, border-color 0.3s;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  transform: translateY(101%);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: -1;
+}
+
+.btn:hover {
+  color: var(--bg);
+  transform: translateY(-2px);
+}
+
+.btn:hover::before {
+  transform: none;
+}
+
+.btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+
+.btn.primary:hover {
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+/* Tag chips */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+
+.chips li {
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.15rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  transition: transform 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.chips li:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Hide the system cursor only when the custom cursor is active */
+html.has-cursor,
+html.has-cursor * {
+  cursor: none !important;
+}
