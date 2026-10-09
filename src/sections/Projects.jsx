@@ -38,7 +38,7 @@ export default function Projects() {
     <section id="projects">
       <Reveal as="h2">Things I've built</Reveal>
       <Reveal as="p" className="sub" delay={0.05}>
-        Backend services, full-stack and AI apps, and test automation. Pick a focus to filter.
+      Full-stack apps, AI features, Python backends, and test automation. Pick a focus to filter.
       </Reveal>
 
       <Reveal className="filters" delay={0.1} role="group" aria-label="Filter projects">
