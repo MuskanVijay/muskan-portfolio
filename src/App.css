@@ -234,8 +234,8 @@ html.has-cursor .cursor-ring {
   animation-delay: calc(var(--i) * 65ms + 100ms);
 }
 .name .line:nth-child(2) .ch {
-  color: transparent;
-  -webkit-text-stroke: 2px var(--ink);
+  color: var(--brand, #0d9488);
+  -webkit-text-stroke: 0;
 }
 .role {
   font-family: var(--mono);
